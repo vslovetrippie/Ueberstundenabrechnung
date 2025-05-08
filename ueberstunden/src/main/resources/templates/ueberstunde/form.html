@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <title>Neue Überstunde erfassen</title>
+</head>
+<body>
+    <div class="centered">
+        <form th:action="@{/ueberstunden}" th:object="${ueberstunde}" method="post">
+            <h1 th:text="${ueberstunde.id != null} ? 'Überstunde bearbeiten' : 'Neue Überstunde erfassen'"></h1>
+
+            <!-- ✅ ID-Feld zum Erkennen bestehender Datensätze -->
+            <input type="hidden" th:field="*{id}" />
+
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" th:value="${ueberstunde.datum}" th:field="*{datum}" required>
+            <br/>
+
+            <label for="stunden">Überstunden (in Stunden):</label>
+            <input type="number" step="0.1" id="stunden" th:field="*{stunden}" required>
+            <br/>
+
+            <label for="mitarbeiter">Mitarbeiter:</label>
+            <select id="mitarbeiter" th:field="*{mitarbeiter}" required>
+                <option th:each="mitarbeiter : ${mitarbeitende}" 
+                        th:value="${mitarbeiter.id}" 
+                        th:text="${mitarbeiter.vorname + ' ' + mitarbeiter.nachname}">
+                </option>
+            </select>
+            <br/>
+
+            <button type="submit">Speichern</button>
+            <br/><br/>
+            <a th:href="@{/ueberstunden}">Zurück zur Übersicht</a>
+        </form>
+    </div>
+</body>
+</html>

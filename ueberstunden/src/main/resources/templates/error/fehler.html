@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <title>Fehler</title>
+</head>
+<body>
+    <h1>Ein Fehler ist aufgetreten</h1>
+    <p th:text="${fehlernachricht}">Unbekannter Fehler</p>
+    <a th:href="@{/mitarbeiter}">Zurück zur Übersicht</a>
+</body>
+</html>

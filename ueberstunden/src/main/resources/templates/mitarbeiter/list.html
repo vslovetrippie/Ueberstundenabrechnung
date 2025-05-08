@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <title>Mitarbeitende Übersicht</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Mitarbeitende Übersicht</h1>
+
+        <a th:href="@{/mitarbeiter/neu}">Neuen Mitarbeitenden anlegen</a>
+        <a th:href="@{/ueberstunden}">Überstunden Übersicht</a><br/><br/>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                    <th>Abteilung</th>
+                    <th>Aktionen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="mitarbeiter : ${mitarbeitende}">
+                    <td th:text="${mitarbeiter.id}"></td>
+                    <td th:text="${mitarbeiter.vorname}"></td>
+                    <td th:text="${mitarbeiter.nachname}"></td>
+                    <td th:text="${mitarbeiter.abteilung}"></td>
+                    <td>
+                        <a th:href="@{'/mitarbeiter/bearbeiten/' + ${mitarbeiter.id}}">Bearbeiten</a>
+                        <a th:href="@{'/mitarbeiter/loeschen/' + ${mitarbeiter.id}}"
+                           onclick="return confirm('Wirklich löschen?');">Löschen</a>
+                        <a th:href="@{'/ueberstunden/neu/' + ${mitarbeiter.id}}">Überstunden erfassen</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

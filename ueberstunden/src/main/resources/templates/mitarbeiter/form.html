@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <title>Mitarbeitenden Formular</title>
+</head>
+<body>
+    <div class="centered">
+        <form th:action="@{/mitarbeiter/speichern}" th:object="${mitarbeiter}" method="post">
+            <h1 th:text="${mitarbeiter.id} != null ? 'Mitarbeitenden bearbeiten' : 'Neuen Mitarbeitenden anlegen'"></h1>
+
+            <input type="hidden" th:field="*{id}" />
+
+            <label for="vorname">Vorname:</label>
+            <input type="text" id="vorname" th:field="*{vorname}" required><br/>
+
+            <label for="nachname">Nachname:</label>
+            <input type="text" id="nachname" th:field="*{nachname}" required><br/>
+
+            <label for="abteilung">Abteilung:</label>
+            <input type="text" id="abteilung" th:field="*{abteilung}" required><br/>
+
+            <button type="submit">Speichern</button>
+            <br/><br/>
+            <a th:href="@{/mitarbeiter}">Zurück zur Übersicht</a>
+        </form>
+    </div>
+</body>
+</html>
